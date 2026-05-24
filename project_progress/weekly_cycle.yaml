@@ -1,0 +1,35 @@
+weekly_cycle:
+  meeting:
+    day: Tuesday
+    time: afternoon
+    purpose:
+      - report previous week's progress
+      - submit current progress
+      - arrange next week's tasks
+      - clarify blockers and responsibilities
+
+  saturday_push:
+    day: Saturday
+    time: morning
+    purpose:
+      - check whether current weekly tasks have meaningful progress
+      - remind the team to push implementation or documentation
+      - identify tasks at risk before next Tuesday meeting
+
+  required_outputs:
+    tuesday_pre_meeting:
+      - meeting_report.md
+      - updated task_tree.yaml
+      - updated progress_log.md
+      - updated risk_and_blockers.md
+
+    tuesday_post_meeting:
+      - next_week_plan.md
+      - updated task_tree.yaml
+      - updated change_log.md
+      - updated risk_and_blockers.md
+
+    saturday:
+      - saturday_push.md
+      - updated risk_and_blockers.md
+      - updated task_tree.yaml if new evidence or updates exist
