@@ -1,0 +1,21 @@
+project:
+  name: Software Lab IBRA Project
+  timezone: Europe/Berlin
+  language:
+    internal_planning: Chinese
+    meeting_spoken_update: English
+
+codex_management_policy:
+  top_level_workstreams:
+    - WS1
+    - WS2
+  allow_new_top_level_workstreams: false
+  require_evidence_for_done: true
+  preserve_history: true
+  default_new_task_status: not_started
+  default_new_task_priority: medium
+  preferred_update_style: concise_and_evidence_based
+
+owners:
+  - name: Ryan
+    role: project contributor
