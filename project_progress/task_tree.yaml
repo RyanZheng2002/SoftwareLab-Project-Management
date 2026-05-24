@@ -1,0 +1,122 @@
+project:
+  name: Software Lab IBRA Project
+  timezone: Europe/Berlin
+  update_cycle:
+    weekly_meeting_day: Tuesday
+    weekly_meeting_time: afternoon
+    progress_push_day: Saturday
+
+status_labels:
+  - not_started
+  - in_progress
+  - blocked
+  - needs_review
+  - done
+  - deferred
+
+priority_labels:
+  - low
+  - medium
+  - high
+  - urgent
+
+workstreams:
+  - id: WS1
+    title: STEP file reading and conversion
+    description: >
+      Read STEP files through OCCT/pythonocc, extract geometry and topology,
+      and convert them into an intermediate data structure suitable for later KRATOS alignment.
+    status: in_progress
+    owner: Ryan
+    children:
+      - id: WS1-T001
+        title: Read STEP file with OCCT/pythonocc
+        status: in_progress
+        priority: high
+        owner: Ryan
+        due: 2026-05-26
+        evidence:
+          - src/step_import/
+        definition_of_done:
+          - STEP file can be loaded without error
+          - Topological hierarchy can be traversed
+          - Basic statistics of solids, shells, faces, edges, and vertices can be printed
+        blockers: []
+        notes:
+          - Initial task. Update based on current repository evidence.
+
+      - id: WS1-T002
+        title: Export STEP topology and geometry to intermediate JSON
+        status: not_started
+        priority: high
+        owner: Ryan
+        due: 2026-06-02
+        evidence:
+          - src/brep_extraction/
+          - examples/
+        definition_of_done:
+          - JSON contains faces, edges, vertices, and boundary loops
+          - Geometry and topology are separated
+          - Face orientation and edge orientation are recorded
+          - Trimming curve representation is documented
+        blockers:
+          - Need to decide exact representation of trimming curves
+        notes: []
+
+  - id: WS2
+    title: KRATOS format alignment and KRATOS analysis
+    description: >
+      Align the intermediate representation with KRATOS .cad.json requirements,
+      generate analysis-ready files, and run or prepare KRATOS IBRA analysis.
+    status: not_started
+    owner: Ryan
+    children:
+      - id: WS2-T001
+        title: Study KRATOS .cad.json format requirements
+        status: in_progress
+        priority: high
+        owner: Ryan
+        due: 2026-06-04
+        evidence:
+          - docs/kratos_cad_json_schema.md
+        definition_of_done:
+          - Required fields are documented
+          - Patch, surface, trimming, and boundary condition fields are identified
+          - Relevant KRATOS examples related to IBRA and .cad.json are reviewed
+          - Unknown or unclear fields are listed as questions
+        blockers: []
+        notes: []
+
+      - id: WS2-T002
+        title: Convert intermediate JSON to KRATOS-compatible .cad.json
+        status: not_started
+        priority: high
+        owner: Ryan
+        due: 2026-06-11
+        evidence:
+          - src/kratos_export/
+        definition_of_done:
+          - Minimal .cad.json can be generated
+          - Generated file structure matches documented KRATOS expectations
+          - At least one simple test geometry is exported
+        blockers:
+          - Depends on WS1-T002
+          - Depends on WS2-T001
+        notes: []
+
+      - id: WS2-T003
+        title: Prepare or run KRATOS IBRA analysis
+        status: not_started
+        priority: medium
+        owner: Ryan
+        due: 2026-06-18
+        evidence:
+          - kratos_cases/
+          - reports/analysis_results/
+        definition_of_done:
+          - Analysis case folder is prepared
+          - Boundary conditions and material settings are documented
+          - Analysis execution status is recorded
+        blockers:
+          - Requires valid KRATOS-compatible .cad.json
+        notes: []
